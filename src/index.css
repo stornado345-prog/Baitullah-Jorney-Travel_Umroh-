@@ -1,0 +1,457 @@
+@import "tailwindcss";
+
+@theme {
+  /* SAFAH Travel Final Color Hierarchy */
+  --color-brand-forest: #072C24;
+  --color-brand-teal: #15665F;
+  --color-brand-periwinkle: #9FBCFF;
+  --color-brand-white: #FFFFFF;
+  --color-brand-charcoal: #0F0F0F;
+
+  /* Clean Neutral Supporting Surface & Border Tokens (No static Soft Periwinkle) */
+  --color-brand-surface: #F7F9F8;
+  --color-brand-border: #D5DFDC;
+  --color-brand-text-secondary: #3A423F;
+  --color-brand-forest-surface: #0B382E;
+}
+
+@layer base {
+  :root {
+    --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  html {
+    font-family: var(--font-body);
+    scroll-behavior: smooth;
+    background-color: var(--color-brand-white);
+    color: var(--color-brand-charcoal);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ================================================================
+   STATIC INTERACTIVE BUTTONS & BORDERS (Deep Teal / Forest / White)
+   ================================================================ */
+
+@layer components {
+  .divider-teal-accent {
+    height: 1.5px;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(21, 102, 95, 0.15) 0%,
+      #15665F 50%,
+      rgba(21, 102, 95, 0.15) 100%
+    );
+  }
+
+  /* Primary interactive button: Deep Teal (#15665F) with Pure White text */
+  .btn-primary-teal {
+    position: relative;
+    overflow: hidden;
+    background-color: #15665F;
+    color: #FFFFFF;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1px solid #15665F;
+    transition: transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+      background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 240ms ease,
+      color 200ms ease;
+    will-change: transform;
+  }
+
+  .btn-primary-teal::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      115deg,
+      transparent 20%,
+      rgba(159, 188, 255, 0.24) 50%,
+      transparent 80%
+    );
+    transform: translateX(-110%);
+    transition: transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  .btn-primary-teal:hover:not(:disabled) {
+    background-color: #072C24;
+    color: #FFFFFF;
+    border-color: #15665F;
+    transform: translateY(-1px) scale(1.025);
+    box-shadow: 0 8px 20px rgba(7, 44, 36, 0.24);
+  }
+
+  .btn-primary-teal:active:not(:disabled) {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 2px 8px rgba(7, 44, 36, 0.18);
+  }
+
+  .btn-primary-teal:hover:not(:disabled)::after {
+    transform: translateX(110%);
+  }
+
+  /* Secondary neutral/outline button on white or light backgrounds */
+  .btn-secondary-outline {
+    background-color: #FFFFFF;
+    color: #0F0F0F;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1px solid #15665F;
+    transition: transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+      background-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 220ms ease;
+    will-change: transform;
+  }
+
+  .btn-secondary-outline:hover:not(:disabled) {
+    background-color: #15665F;
+    color: #FFFFFF;
+    border-color: #15665F;
+    transform: translateY(-1px) scale(1.025);
+    box-shadow: 0 6px 16px rgba(21, 102, 95, 0.18);
+  }
+
+  .btn-secondary-outline:active:not(:disabled) {
+    transform: translateY(0) scale(0.97);
+  }
+
+  /* Hero secondary outline button on Deep Forest Green */
+  .btn-hero-outline {
+    background-color: transparent;
+    color: #FFFFFF;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1.5px solid rgba(255, 255, 255, 0.72);
+    transition: transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+      background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 220ms ease;
+    will-change: transform;
+  }
+
+  .btn-hero-outline:hover:not(:disabled) {
+    background-color: #15665F;
+    color: #FFFFFF;
+    border-color: #15665F;
+    transform: translateY(-1px) scale(1.025);
+    box-shadow: 0 6px 18px rgba(7, 44, 36, 0.28);
+  }
+
+  .btn-hero-outline:active:not(:disabled) {
+    transform: translateY(0) scale(0.97);
+  }
+}
+
+/* ================================================================
+   SOFT PERIWINKLE (#9FBCFF) DYNAMIC ANIMATION & LIGHT EFFECTS ONLY
+   ================================================================ */
+
+@keyframes periwinkle-gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes periwinkle-color-breath {
+  0%, 100% {
+    color: #FFFFFF;
+    text-shadow: 0 0 0 rgba(159, 188, 255, 0);
+  }
+  50% {
+    color: #9FBCFF;
+    text-shadow: 0 0 14px rgba(159, 188, 255, 0.28);
+  }
+}
+
+@keyframes teal-color-breath {
+  0%, 100% {
+    color: #15665F;
+    text-shadow: 0 0 0 rgba(159, 188, 255, 0);
+  }
+  50% {
+    color: #072C24;
+    text-shadow: 0 0 12px rgba(159, 188, 255, 0.35);
+  }
+}
+
+@keyframes periwinkle-light-sweep {
+  0% {
+    background-position: -120% 0%;
+  }
+  100% {
+    background-position: 220% 0%;
+  }
+}
+
+@keyframes periwinkle-ambient-pulse {
+  0%, 100% {
+    opacity: 0.10;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.22;
+    transform: translate3d(0, -3px, 0) scale(1.015);
+  }
+}
+
+@keyframes teal-ambient-pulse {
+  0%, 100% {
+    opacity: 0.14;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.24;
+    transform: translate3d(0, -3px, 0) scale(1.015);
+  }
+}
+
+@keyframes periwinkle-text-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+    text-shadow: 0 0 16px rgba(159, 188, 255, 0.45);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 0 rgba(159, 188, 255, 0);
+  }
+}
+
+@layer components {
+  /* 1. Animated Gradient Text for Highlighted Heading Words on Dark (Forest) Backgrounds */
+  .text-animated-periwinkle-dark {
+    background: linear-gradient(
+      110deg,
+      #FFFFFF 0%,
+      #9FBCFF 38%,
+      #FFFFFF 58%,
+      #9FBCFF 88%,
+      #FFFFFF 100%
+    );
+    background-size: 240% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 10px rgba(159, 188, 255, 0.22));
+    animation: periwinkle-gradient-flow 8s ease-in-out infinite;
+  }
+
+  /* 2. Animated Gradient Text for Highlighted Heading Words on Pure White Backgrounds */
+  .text-animated-periwinkle-light {
+    background: linear-gradient(
+      110deg,
+      #072C24 0%,
+      #15665F 32%,
+      #9FBCFF 50%,
+      #15665F 68%,
+      #072C24 100%
+    );
+    background-size: 240% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: periwinkle-gradient-flow 9s ease-in-out infinite;
+  }
+
+  /* 2b. Animated Gradient Text for Brand/Headings on Soft Periwinkle (#9FBCFF) Backgrounds */
+  .text-animated-header-dark {
+    background: linear-gradient(
+      110deg,
+      #0F0F0F 0%,
+      #072C24 35%,
+      #15665F 50%,
+      #072C24 65%,
+      #0F0F0F 100%
+    );
+    background-size: 240% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: periwinkle-gradient-flow 9s ease-in-out infinite;
+  }
+
+  /* 3. Slow Color Transition + Subtle Glowing Text Effect (Dark Surfaces) */
+  .text-breath-periwinkle {
+    animation: periwinkle-color-breath 7s ease-in-out infinite;
+  }
+
+  /* 3b. Slow Color Transition (Light / Pure White Surfaces) */
+  .text-breath-teal-light {
+    animation: teal-color-breath 7s ease-in-out infinite;
+  }
+
+  /* 4. Hero Text Reveal Animation */
+  .hero-text-reveal {
+    animation: periwinkle-text-reveal 750ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* 5. Moving Light Shimmer Divider */
+  .divider-periwinkle-shimmer {
+    position: relative;
+    height: 1.5px;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(21, 102, 95, 0.25) 0%,
+      rgba(21, 102, 95, 0.7) 50%,
+      rgba(21, 102, 95, 0.25) 100%
+    );
+    overflow: hidden;
+  }
+
+  .divider-periwinkle-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(159, 188, 255, 0.85) 50%,
+      transparent 100%
+    );
+    background-size: 40% 100%;
+    background-repeat: no-repeat;
+    animation: periwinkle-light-sweep 6.5s ease-in-out infinite;
+  }
+
+  /* 6. Animated Underline Accent (Hover & Active) */
+  .underline-animated-periwinkle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .underline-animated-periwinkle::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      rgba(159, 188, 255, 0.2) 0%,
+      #9FBCFF 50%,
+      rgba(159, 188, 255, 0.2) 100%
+    );
+    background-size: 200% 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    animation: periwinkle-light-sweep 5s ease-in-out infinite;
+  }
+
+  .underline-animated-periwinkle:hover::after,
+  .underline-animated-periwinkle:focus-visible::after,
+  .underline-animated-periwinkle.is-active::after {
+    transform: scaleX(1);
+  }
+
+  /* 6b. High-Contrast Animated Underline for Soft Periwinkle (#9FBCFF) Header */
+  .underline-animated-forest {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .underline-animated-forest::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      #15665F 0%,
+      #072C24 50%,
+      #15665F 100%
+    );
+    background-size: 200% 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    animation: periwinkle-light-sweep 5s ease-in-out infinite;
+  }
+
+  .underline-animated-forest:hover::after,
+  .underline-animated-forest:focus-visible::after,
+  .underline-animated-forest.is-active::after {
+    transform: scaleX(1);
+  }
+
+  /* 7. Scroll-Triggered Text Reveal */
+  .scroll-reveal-text {
+    opacity: 0;
+    transform: translateY(12px);
+    text-shadow: 0 0 14px rgba(159, 188, 255, 0.35);
+    transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 650ms cubic-bezier(0.16, 1, 0.3, 1),
+      text-shadow 850ms ease;
+  }
+
+  .scroll-reveal-text.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 0 rgba(159, 188, 255, 0);
+  }
+
+  /* 8. Animated Decorative Ornament Accent */
+  .animate-periwinkle-ornament {
+    animation: periwinkle-ambient-pulse 8s ease-in-out infinite;
+  }
+
+  .animate-teal-ornament {
+    animation: teal-ambient-pulse 8s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .text-animated-periwinkle-dark,
+  .text-animated-periwinkle-light,
+  .text-animated-header-dark {
+    background: none;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    color: inherit;
+    filter: none;
+    animation: none;
+  }
+  .scroll-reveal-text {
+    opacity: 1;
+    transform: none;
+    text-shadow: none;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

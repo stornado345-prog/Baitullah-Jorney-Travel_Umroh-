@@ -1,0 +1,6 @@
+{
+  "name": "SAFAH Travel",
+  "description": "SAFAH Travel — Demonstration portfolio platform for Indonesian Umrah travel packages, departure schedules, and registration inquiries.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
