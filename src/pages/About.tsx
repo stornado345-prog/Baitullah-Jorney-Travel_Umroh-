@@ -13,7 +13,7 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta.ts';
 import { MainLayout } from '../layouts/MainLayout.tsx';
 
 const ABOUT_IMAGE =
-  '/assets/aistudio/Gemini_Generated_Image_azm31razm31razm3_bd6b0af4.jfif';
+  `${import.meta.env.BASE_URL}assets/aistudio/Gemini_Generated_Image_azm31razm31razm3_bd6b0af4.jfif`;
 
 const SAMPLE_TEAM = [
   {

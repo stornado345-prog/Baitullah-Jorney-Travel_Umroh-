@@ -6,7 +6,7 @@ interface BaitullahLogoProps {
 }
 
 export const BRAND_LOGO_SRC =
-  '/assets/aistudio/Logo_Baitullah_Journey_Hijau_Toska_25ffd7d4.png';
+  `${import.meta.env.BASE_URL}assets/aistudio/Logo_Baitullah_Journey_Hijau_Toska_25ffd7d4.png`;
 
 /**
  * Baitullah Journey Brand Emblem & Wordmark

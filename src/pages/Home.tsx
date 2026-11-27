@@ -19,25 +19,25 @@ import { fetchPackages } from '../services/packageService.ts';
 import type { UmrahPackage } from '../types/travel.ts';
 import { buildWhatsAppUrl } from '../utils/whatsapp.ts';
 
-const HERO_IMAGE = '/src/assets/images/package_makkah_haram_1795245601010.jpg';
+const HERO_IMAGE = `${import.meta.env.BASE_URL}src/assets/images/package_makkah_haram_1795245601010.jpg`;
 const CONSULTATION_IMAGE =
-  '/assets/aistudio/Gemini_Generated_Image_azm31razm31razm3_bd6b0af4.jfif';
+  `${import.meta.env.BASE_URL}assets/aistudio/Gemini_Generated_Image_azm31razm31razm3_bd6b0af4.jfif`;
 
 const GALLERY_ITEMS = [
   {
-    src: '/src/assets/images/hero_masjid_nabawi_1795245600279.jpg',
+    src: `${import.meta.env.BASE_URL}src/assets/images/hero_masjid_nabawi_1795245600279.jpg`,
     title: 'Pelataran Masjid Nabawi, Madinah',
     caption:
       'Suasana senja yang tenang di pelataran Masjid Nabawi dengan akses jalan kaki dari hotel.',
   },
   {
-    src: '/src/assets/images/package_madinah_courtyard_1795245601259.jpg',
+    src: `${import.meta.env.BASE_URL}src/assets/images/package_madinah_courtyard_1795245601259.jpg`,
     title: 'Koridor Teduh di Tanah Suci',
     caption:
       'Lingkungan yang tertata dan nyaman untuk kekhusyukan ibadah keluarga maupun lansia.',
   },
   {
-    src: '/src/assets/images/package_luxury_suite_1795245600782.jpg',
+    src: `${import.meta.env.BASE_URL}src/assets/images/package_luxury_suite_1795245600782.jpg`,
     title: 'Akomodasi Hotel Pilihan',
     caption:
       'Kamar istirahat yang bersih, tenang, dan tertata dengan standar pelayanan premium.',

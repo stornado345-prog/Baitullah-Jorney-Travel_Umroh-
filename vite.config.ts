@@ -6,6 +6,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: process.env.GITHUB_ACTIONS === 'true' ? '/Baitullah-Jorney-Travel_Umroh-/' : '/',
     plugins: [
       react(),
       tailwindcss(),
@@ -24,6 +25,10 @@ export default defineConfig(() => {
           const distAssets = path.resolve(distDir, 'src/assets');
           if (fs.existsSync(distDir) && fs.existsSync(srcAssets)) {
             fs.cpSync(srcAssets, distAssets, {recursive: true, force: true});
+          }
+          const indexFile = path.resolve(distDir, 'index.html');
+          if (fs.existsSync(indexFile)) {
+            fs.copyFileSync(indexFile, path.resolve(distDir, '404.html'));
           }
         },
       },
